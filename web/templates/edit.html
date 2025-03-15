@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ketuvim - Edit Transcription</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Review and Edit Transcription</h1>
+    <div>
+        <img src="{{ url_for('static', filename='../uploads/' + image_name) }}" alt="Uploaded Record" style="max-width:300px;">
+    </div>
+    <form method="POST" action="{{ url_for('save') }}">
+        <input type="hidden" name="image_name" value="{{ image_name }}">
+        <label for="corrected_text">Transcribed Text:</label>
+        <br>
+        <textarea id="corrected_text" name="corrected_text" rows="10" cols="80">{{ recognized_text }}</textarea>
+        <br>
+        <button type="submit">Save Corrections</button>
+    </form>
+    <br>
+    <a href="{{ url_for('upload') }}">Upload another image</a>
+</body>
+</html>

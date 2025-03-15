@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ketuvim - Transcription History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Transcription History</h1>
+    <table border="1">
+        <tr>
+            <th>Image Name</th>
+            <th>Recognized Text</th>
+            <th>Corrected Text</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for row in transcriptions %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] if row[2] else "Not corrected" }}</td>
+            <td>{{ row[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('upload') }}">Upload another image</a>
+</body>
+</html>
