@@ -10,4 +10,6 @@ __pycache__/
 data/
 set/
 escriptorium_backup/
+web/ketuvim.db
+web/uploads
 " > .gitignore
