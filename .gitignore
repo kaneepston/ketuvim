@@ -9,6 +9,9 @@ __pycache__/
 .vscode/
 data/
 set/
+/escriptorium/
+/escriptorium_native/
+/escriptorium_backup/
 escriptorium_backup/
 web/ketuvim.db
 web/uploads
