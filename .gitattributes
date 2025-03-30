@@ -1,0 +1,1 @@
+web/models/ketuvim_nert/*.bin filter=lfs diff=lfs merge=lfs -text

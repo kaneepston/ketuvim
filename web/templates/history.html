@@ -2,28 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ketuvim - Transcription History</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>KETUVIM history</title>
 </head>
 <body>
-    <h1>Transcription History</h1>
-    <table border="1">
-        <tr>
-            <th>Image Name</th>
-            <th>Recognized Text</th>
-            <th>Corrected Text</th>
-            <th>Timestamp</th>
-        </tr>
-        {% for row in transcriptions %}
-        <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-            <td>{{ row[2] if row[2] else "Not corrected" }}</td>
-            <td>{{ row[3] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <br>
-    <a href="{{ url_for('upload') }}">Upload another image</a>
+    <main class="container">
+        <h1>KETUVIM history</h1>
+
+        {% if transcriptions %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image name</th>
+                        <th>Input text (preview)</th>
+                        <th>Corrected text (preview)</th>
+                        <th>Timestamp</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in transcriptions %}
+                    <tr>
+                        <td>{{ item['image_name'] }}</td>
+                        <td>{{ item['input_text'] | truncate(80) }}</td> {# Show first 80 chars #}
+                        <td>{{ item['corrected_text'] | truncate(80) }}</td> {# Show first 80 chars #}
+                        <td>{{ item['timestamp'] }}</td>
+                        <td>
+                            {# *** FIXED url_for HERE *** #}
+                            <a href="{{ url_for('edit_page', filename=item['image_name']) }}">View/edit</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No transcription history found.</p>
+        {% endif %}
+
+        <div class="button-group">
+            {# *** FIXED url_for HERE *** #}
+            <button type="button" onclick="window.location.href='{{ url_for('index') }}'">Go to main page</button>
+        </div>
+
+    </main>
 </body>
 </html>
